@@ -1,22 +1,10 @@
 import { defineConfig } from "astro/config";
 import Unocss from "@unocss/astro";
-import { presetWebFonts, presetWind } from "unocss";
-import { presetScrollbar } from "unocss-preset-scrollbar";
+import unoPresets from "./src/unoPresets.mjs";
 
 // https://astro.build/config
 import react from "@astrojs/react";
 
-export const unoPresets = [
-  presetWind(),
-  presetWebFonts({
-    provider: "google",
-    fonts: {
-      sans: ["Ubuntu:300,400,500,700", "Roboto"],
-      bread: ["Nunito"],
-    },
-  }),
-  presetScrollbar(),
-];
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,9 +14,4 @@ export default defineConfig({
     }),
     react(),
   ],
-  vite: {
-    optimizeDeps: {
-      exclude: ["astro"]
-    }
-  }
 });

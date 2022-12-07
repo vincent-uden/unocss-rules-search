@@ -3,13 +3,12 @@ import "uno.css";
 import "@unocss/reset/tailwind.css";
 
 import UnoRules from "../components/UnoRules";
-import { unoPresets } from "../../astro.config.mjs";
+import unoPresets from "../unoPresets.mjs";
 import type { Rule } from "unocss";
 
 const rules: Rule[][] = unoPresets.map((p) => p.rules ?? []);
 let flatRules: Rule[] = [];
 for (let i = 0; i < rules.length; i++) {
-  console.log(rules[i])
   flatRules = flatRules.concat(rules[i]);
 }
 ---

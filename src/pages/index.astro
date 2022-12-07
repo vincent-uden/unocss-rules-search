@@ -1,0 +1,58 @@
+---
+import "uno.css";
+import "@unocss/reset/tailwind.css";
+
+import UnoRules from "../components/UnoRules";
+import { unoPresets } from "../../astro.config.mjs";
+import type { Rule } from "unocss";
+
+const rules: Rule[][] = unoPresets.map((p) => p.rules ?? []);
+let flatRules: Rule[] = [];
+for (let i = 0; i < rules.length; i++) {
+  console.log(rules[i])
+  flatRules = flatRules.concat(rules[i]);
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body class="min-h-screen">
+    <div class="flex flex-col h-90vh max-w-screen-md mx-auto">
+      <div class="pt-40 mb-8">
+        <h1 class="font-sans text-6xl text-white text-center font-bold">
+          UnoCSS Rules
+        </h1>
+        <p class="font-sans text-lg text-white text-center">
+          Parsing the active rules defined by UnoCSS for easy consumption
+        </p>
+      </div>
+
+      <UnoRules client:load rules={flatRules.map((r) => r[0].toString())} />
+    </div>
+  </body>
+
+  <style>
+    body {
+      background-image: linear-gradient(
+        0deg,
+        hsl(283deg 100% 32%) 0%,
+        hsl(279deg 86% 34%) 11%,
+        hsl(275deg 78% 35%) 22%,
+        hsl(271deg 72% 36%) 33%,
+        hsl(268deg 68% 36%) 44%,
+        hsl(264deg 65% 36%) 56%,
+        hsl(260deg 62% 36%) 67%,
+        hsl(256deg 60% 35%) 78%,
+        hsl(251deg 58% 35%) 89%,
+        hsl(247deg 56% 34%) 100%
+      );
+      background-attachment: fixed;
+    }
+  </style>
+</html>
